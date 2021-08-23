@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  nginx:
+    container_name: nginx
+    image: nginx/nginx:latest
+    ports:
+      - "80:80/tcp"
+      - "443:443/tcp"
+    environment:
+      TZ: 'Europe/Berlin'
+      # WEBPASSWORD: 'set a secure password here or it will be random'
+    # Volumes store your data between container upgrades
+    volumes:
+      - './etc-nginx/:/etc/nginx/'
+    # Recommended but not required (DHCP needs NET_ADMIN)
