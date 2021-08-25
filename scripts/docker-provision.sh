@@ -20,4 +20,27 @@ adduser vagrant docker
 
 cd /vagrant
 docker build -t my-nginx .
-docker run -d -p 80:80 my-nginx
+docker run -d --restart always --name cgi-nginx -p 80:80 -p 443:443 my-nginx 
+
+#sudo mkdir -p /etc/nginx/ssl
+#cd /etc/nginx/ssl
+
+
+
+#openssl genrsa -out cgi_challenge.key 2048
+#openssl req -new -key cgi_challenge.key -out cgi_challenge.csr
+#DE \
+#Thuringia \
+#Weimar \
+#MyOrganisation \
+#MyOrg \
+#my.org \
+#my@org.com \
+#\
+#\
+
+#openssl x509 -req -days 730 -in cgi_challenge.csr -signkey cgi_challenge.key -out cgi_challenge.crt
+
+#openssl dhparam -out dhparam.pem 2048
+
+
