@@ -1,5 +1,4 @@
-FROM debian:buster
-RUN apt-get update && apt-get install -y nginx 
-COPY html /var/www/html/
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+FROM nginx
+COPY html/*.* /usr/share/nginx/html
+COPY ssl /etc/nginx/ssl
+COPY conf/*.* /etc/nginx/.
