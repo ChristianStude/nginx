@@ -1,7 +1,7 @@
 # -*- mode: ruby -*-
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "ubuntu/focal64"
+  config.vm.box = "launchquickly/focal64"
   config.vm.provision "shell", path: "scripts/bootstrap.sh"
   config.vm.define "docker" do |docker|
     docker.vm.hostname = "docker"
