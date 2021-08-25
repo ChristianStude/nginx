@@ -18,11 +18,6 @@ apt-get -y install docker-ce docker-ce-cli containerd.io \
 systemctl enable --now docker
 adduser vagrant docker
 
-# NGINX
-# Repo klonen und Container starten
-mkdir -p /home/nginx && cd /home/nginx
-git clone https://github.com/nginx/nginx
-cd /home/nginx
-
-# Container starten
-docker run --name hello_cgi -d nginx
+cd /vagrant
+docker build -t my-nginx .
+docker run -d -p 80:80 my-nginx
