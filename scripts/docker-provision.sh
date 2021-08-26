@@ -1,8 +1,5 @@
 #!/bin/sh
 
-# APT im nicht interaktiven Modus
-export DEBIAN_FRONTEND=noninteractive
-
 # Docker installieren
 apt-get -y install apt-transport-https ca-certificates curl \
     gnupg lsb-release
@@ -15,32 +12,13 @@ apt-get update
 apt-get -y install docker-ce docker-ce-cli containerd.io \
   git docker-compose
 
+# Docker starten und "Vagrant" als Benutzer hinzufügen
 systemctl enable --now docker
 adduser vagrant docker
 
+# In das Verzeichnis Vagrant wechseln und nginx installieren
 cd /vagrant
 docker build -t my-nginx .
+
+# Container my-nginx erstellen und Ports 80 und 443 zuweisen
 docker run -d --restart always --name cgi-nginx -p 80:80 -p 443:443 my-nginx 
-
-#sudo mkdir -p /etc/nginx/ssl
-#cd /etc/nginx/ssl
-
-
-
-#openssl genrsa -out cgi_challenge.key 2048
-#openssl req -new -key cgi_challenge.key -out cgi_challenge.csr
-#DE \
-#Thuringia \
-#Weimar \
-#MyOrganisation \
-#MyOrg \
-#my.org \
-#my@org.com \
-#\
-#\
-
-#openssl x509 -req -days 730 -in cgi_challenge.csr -signkey cgi_challenge.key -out cgi_challenge.crt
-
-#openssl dhparam -out dhparam.pem 2048
-
-
